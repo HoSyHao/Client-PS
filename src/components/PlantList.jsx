@@ -5,6 +5,7 @@ import axios from 'axios';
 import Plant from './Plant';
 import AddForm from './AddForm';
 import { Form, Button, Modal } from 'react-bootstrap';
+import { HOST } from '../utils/constants';
 
 function PlantList() {
   const [isInitialLoad, setIsInitialLoad] = useState(true);
