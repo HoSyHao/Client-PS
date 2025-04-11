@@ -105,7 +105,7 @@ function PlantList() {
 
   const handleDeleteConfirm = async () => {
     try {
-      const response = await axios.delete(`${Host}/api/plants/delete`, {
+      const response = await axios.delete(`${HOST}/api/plants/delete`, {
         data: { ids: selectedPlants },
       });
   
