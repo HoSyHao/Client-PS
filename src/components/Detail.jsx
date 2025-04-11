@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Button } from "react-bootstrap";
+import { HOST } from "../utils/constants";
 
 const PlantDetail = () => {
   const { id } = useParams();
@@ -14,7 +15,7 @@ const PlantDetail = () => {
   useEffect(() => {
     const fetchPlant = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/plants/${id}`);
+        const response = await axios.get(`${HOST}/api/plants/${id}`);
         setPlant(response.data);
         setLoading(false);
       } catch (err) {
@@ -26,7 +27,7 @@ const PlantDetail = () => {
   }, [id]);
 
   const imageSource = plant?.image
-  ? `http://localhost:5000/upload/images/${plant.image}`
+  ? `${HOST}/upload/images/${plant.image}`
   : '/assets/images/commingsoon.jpg';
 
 

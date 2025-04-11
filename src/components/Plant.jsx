@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Badge, Button, Modal, Form } from 'react-bootstrap';
 import axios from 'axios';
 import UpdateForm from './UpdateForm';
+import { HOST } from '../utils/constants';
 
 const Plant = React.forwardRef(({ plant, onClick, isDeleteMode, onSelect, isSelected, refetch }, ref) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -17,7 +18,7 @@ const Plant = React.forwardRef(({ plant, onClick, isDeleteMode, onSelect, isSele
   };
 
   const imageSource = plant.image
-    ? `http://localhost:5000/upload/images/${plant.image}`
+    ? `${HOST}/upload/images/${plant.image}`
     : '/assets/images/commingsoon.jpg';
 
   const statusImage = statusImages[plant.status] || null;
@@ -29,7 +30,7 @@ const Plant = React.forwardRef(({ plant, onClick, isDeleteMode, onSelect, isSele
 
   const handleDeleteConfirm = async () => {
     try {
-      const response = await axios.delete(`http://localhost:5000/api/plants/delete?id=${plant._id}`);
+      const response = await axios.delete(`${HOST}/api/plants/delete?id=${plant._id}`);
       alert(`Deleted ${response.data.deletedCount} plant`);
       setShowDeleteModal(false);
       await refetch();

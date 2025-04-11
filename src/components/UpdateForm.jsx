@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Button, Modal, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
+import { HOST } from '../utils/constants';
 
 const UpdateForm = ({ plant, onClose, refetch, categories }) => {
   const [formData, setFormData] = useState({
@@ -27,7 +28,7 @@ const UpdateForm = ({ plant, onClose, refetch, categories }) => {
       });
       setPreviewImage(
         plant.image
-          ? `http://localhost:5000/upload/images/${plant.image}`
+          ? `${HOST}/upload/images/${plant.image}`
           : '/assets/images/commingsoon.jpg'
       );
     }
@@ -66,7 +67,7 @@ const UpdateForm = ({ plant, onClose, refetch, categories }) => {
         dataToSend.append('image', formData.image);
       }
 
-      await axios.put(`http://localhost:5000/api/plants/update/${plant._id}`, dataToSend, {
+      await axios.put(`${HOST}/api/plants/update/${plant._id}`, dataToSend, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
 

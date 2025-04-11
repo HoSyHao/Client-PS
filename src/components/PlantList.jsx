@@ -29,7 +29,7 @@ function PlantList() {
   } = useInfiniteQuery({
     queryKey: ['plants', categoryFilter, sortOption],
     queryFn: async ({ pageParam = 1 }) => {
-      const response = await axios.get(`http://localhost:5000/api/plants`, {
+      const response = await axios.get(`${HOST}/api/plants`, {
         params: {
           page: pageParam,
           pageSize: 6,
@@ -105,7 +105,7 @@ function PlantList() {
 
   const handleDeleteConfirm = async () => {
     try {
-      const response = await axios.delete(`http://localhost:5000/api/plants/delete`, {
+      const response = await axios.delete(`${Host}/api/plants/delete`, {
         data: { ids: selectedPlants },
       });
   

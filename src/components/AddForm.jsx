@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
+import { HOST } from '../utils/constants';
 
 const AddForm = ({ onClose, refetch, categories }) => {
   const [formData, setFormData] = useState({
@@ -41,7 +42,7 @@ const AddForm = ({ onClose, refetch, categories }) => {
         dataToSend.append('image', selectedImage);
       }
 
-      await axios.post('http://localhost:5000/api/plants/add', dataToSend, {
+      await axios.post(`${HOST}/api/plants/add`, dataToSend, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       alert('Plant added successfully!');
